@@ -1,81 +1,88 @@
-// Solmar Bay — tuning and shared constants for the open-world crime game.
-// One file, one job: every number the other modules agree on lives here, so the
-// city, the cars, the police and the missions all play by the same rules.
-
-export const STEP = 1 / 60;
-export const WORLD_W = 3600;
-export const WORLD_H = 2600;
-export const ROAD_W = 132;
-export const LANE = 34;
-export const SAVE_KEY = 'solmar-bay-save-v1';
-export const DEFAULT_SEED = 20261120;
-
-export const PLAYER = { speed: 198, radius: 14, health: 100, punchRange: 48, punchDamage: 25 };
-export const CAR = {
-  accel: 430,
-  brake: 720,
-  reverseAccel: 270,
-  maxSpeed: 565,
-  maxReverse: 185,
-  turnRate: 2.7,
-  radius: 26,
-  length: 54,
-  width: 27,
+// Solmar Bay — tuning constants for the whole game.
+// One place for every number that shapes how the city feels to play.
+export const GAME = {
+  title: 'Solmar Bay',
+  hero: 'Rico Vega',
+  contact: 'Mara',
+  seed: 20261124,
+  worldWidth: 3200,
+  worldHeight: 2400,
+  roadGap: 400,
+  roadWidth: 96,
+  beachWidth: 260,
+  viewWidth: 1280,
+  viewHeight: 800,
+  saveKey: 'solmar-bay-save-v1',
 };
-export const TRAFFIC_SPEED = 150;
-export const POLICE_SPEED = 615;
-export const WANTED_DECAY_SECONDS = 14;
-export const BULLET_SPEED = 820;
-export const BULLET_RANGE = 620;
-export const PISTOL_DAMAGE = 34;
-export const PISTOL_AMMO = 12;
 
-export const MISSION_DEFS = [
+export const PLAYER = {
+  walkSpeed: 210,
+  runSpeed: 320,
+  radius: 14,
+  maxHealth: 100,
+  startMoney: 120,
+  startAmmo: 24,
+};
+
+export const CAR = {
+  accel: 520,
+  reverseAccel: 320,
+  maxSpeed: 560,
+  maxReverse: 160,
+  brake: 900,
+  drag: 0.9,
+  steer: 2.6,
+  length: 54,
+  width: 26,
+};
+
+export const POLICE = {
+  maxCars: 5,
+  chaseSpeed: 520,
+  ramDamage: 8,
+  arrestSeconds: 2.5,
+  evadeSeconds: 9,
+  decaySeconds: 5,
+};
+
+export const MISSIONS = [
   {
     id: 'first-wheels',
     name: 'First Wheels',
-    reward: 300,
-    briefing: 'Mara needs wheels, fast. Take any car on the street and bring it to the chop shop on Harbor Row.',
-    done: 'Clean delivery. Mara owes you one — and the bay pays in cash.',
+    giver: 'Mara',
+    briefing: 'Mara needs wheels. Steal any car on the street, then bring it to her garage on Coral Row.',
+    reward: 250,
   },
   {
     id: 'bay-run',
     name: 'Bay Run',
-    reward: 500,
-    briefing: 'A courier run across Solmar Bay: hit all four checkpoints before the clock runs out. No excuses.',
-    done: 'Four checkpoints, one very fast Rico. The courier crew is impressed.',
+    giver: 'Mara',
+    briefing: 'A buyer is waiting across town. Hit all four checkpoints along the bay before the clock runs out.',
+    reward: 400,
+    timeLimit: 95,
   },
   {
     id: 'heat',
-    name: 'Heat on the Bay',
-    reward: 650,
-    briefing: 'The precinct is watching. Get the heat to three stars, then shake it and reach the safehouse on Palm Court.',
-    done: 'Heat gone, trail cold. You are a ghost again, Rico.',
+    name: 'Heat',
+    giver: 'Mara',
+    briefing: 'The cops are all over you. Lose the heat, then slip back to the safehouse on Palm Court.',
+    reward: 600,
   },
 ];
 
 export const PALETTE = {
-  water: '#2f7fa8',
-  waterDeep: '#256b90',
-  sand: '#e8cf96',
-  grass: '#7fae5a',
-  park: '#6da24e',
-  road: '#3a3d44',
-  roadEdge: '#2c2e33',
-  sidewalk: '#b9b3a4',
-  building: ['#e8a56b', '#d97b6c', '#7fb3c8', '#c9b458', '#9db38a', '#c98bb0', '#8fa3c8', '#e0cfa8'],
-  roof: ['#a85f4e', '#7a5a3a', '#5d7a8a', '#8a7a4a'],
-  car: ['#c94f42', '#3f7fc9', '#e8c33c', '#4fae62', '#8a5fc9', '#d8d8d8', '#2e2e33', '#e07b2e'],
-  police: '#1e3a5f',
-  taxi: '#f2c230',
-  ped: ['#e8b48a', '#c98a6a', '#8a6a4a', '#e0c090'],
-  shirt: ['#d94f4f', '#4f7fd9', '#4fae62', '#e8c33c', '#8a5fc9', '#e07b2e', '#dddddd'],
+  water: '#1e7fa8',
+  deepWater: '#156a92',
+  sand: '#e8d29a',
+  grass: '#5da24a',
+  parkDark: '#4a8a3c',
+  sidewalk: '#c9c2b4',
+  asphalt: '#3c3f45',
+  asphaltLine: '#e8d44d',
+  buildingRoof: ['#c96f4a', '#7d9bb5', '#b5a06a', '#8a6fa8', '#5f8f7a', '#b55a5a', '#6a7f9e', '#d08a4e'],
+  buildingWall: ['#e8dcc8', '#d9c9a8', '#f2e6d0', '#cdbfa5'],
+  carColors: ['#d94f3d', '#3d7dd9', '#e8c33d', '#4ad97a', '#e8e8e8', '#2b2f36', '#d97ab5', '#7ad9d1'],
+  playerShirt: '#e84a3d',
+  policeCar: '#20242c',
+  policeLight: '#3d7dd9',
 };
-
-export const DISTRICTS = [
-  { name: 'Palm Court', x: 300, y: 300, w: 1100, h: 700 },
-  { name: 'Harbor Row', x: 1900, y: 300, w: 1400, h: 700 },
-  { name: 'Marina District', x: 300, y: 1100, w: 1100, h: 700 },
-  { name: 'Old Town', x: 1900, y: 1100, w: 1400, h: 700 },
-  { name: 'Sunset Strip', x: 300, y: 1900, w: 3000, h: 500 },
-];
